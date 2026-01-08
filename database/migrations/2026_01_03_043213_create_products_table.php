@@ -17,7 +17,8 @@ return new class extends Migration
             $table->longText('product_description')->nullable();
             $table->integer('product_quantity')->nullable();
             $table->integer('product_price')->nullable();
-            $table->integer('product_category')->nullable();
+            $table->string('product_image')->nullable();
+            $table->string('product_category')->nullable();
             $table->timestamps();
         });
     }
