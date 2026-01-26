@@ -77,4 +77,9 @@ class AdminController extends Controller
         return redirect()->back()->with('product_message', 'Product added successfully');
     }
 
+    public function viewProduct(){
+        $products = Product::all();
+        return view('admin.viewproduct', compact('products'));
+    }
+
 }
