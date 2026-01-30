@@ -1,8 +1,8 @@
 @extends('admin.maindesign')
 @section('view_product')
-    @if (session('deletecategory_message'))
+    @if (session('deleteproduct_message'))
         <div style=" margin-bottom: 10px; color: black; background-color: orangered;">
-            {{ session('deletecategory_message') }}
+            {{ session('deleteproduct_message') }}
         </div>
     @endif
     <table style="width:100%; border-collapse: collapse; font-family: Arial,sans-serif; ">
@@ -28,7 +28,7 @@
                     <td style=" padding: 12px;">{{ $product->product_price }}</td>
                     <td style=" padding: 12px;"><img src="{{ asset('products/' . $product->product_image) }}" alt="Product Image" style="width: 50px; height: 50px;"></td>
                     <td style=" padding: 12px;">
-                        <a href="{{ route('categorytoupdate', $product->id) }}" style="color: green;">
+                        <a href="{{ route('producttoupdate', $product->id) }}" style="color: green;">
                             Update
                         </a>&nbsp;&nbsp;&nbsp;<a href="{{ route('admin.productdelete', $product->id) }}"
                             onclick="return confirm('Are you sure to delete')">Delete</a>

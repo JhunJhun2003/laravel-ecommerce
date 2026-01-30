@@ -10,7 +10,7 @@
             <form action="{{ route('admin.postaddproduct') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="text" name="product_title" placeholder="Enter Product Title"><br><br>
-                <textarea name="product_description" id="">Product description...</textarea><br><br>
+                <textarea name="product_description" id="" placeholder="Product description..."></textarea><br><br>
                 <input type="text" name="product_quantity" placeholder="Enter Product Quantity"><br><br>
                 <input type="number" name="product_price" placeholder="Enter Product Price"><br><br>
                 <input type="file" name="product_image"><label>Add Image here</label><br><br>

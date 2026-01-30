@@ -56,6 +56,13 @@ class AdminController extends Controller
         return view('admin.addproduct', compact('categories'));
     }
 
+    public function editProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.editproduct', compact('product', 'categories'));
+    }
+
     public function postAddProduct(Request $request)
     {
         $product = new Product();
@@ -86,6 +93,26 @@ class AdminController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
         return redirect()->back()->with('deleteproduct_message', 'Product deleted successfully');
+    }
+
+    public function updateProduct(Request $request, $id){
+        $product = Product::findOrFail($id);
+        $product->product_title = $request->product_title;
+        $product->product_description = $request->product_description;
+        $product->product_quantity = $request->product_quantity;
+        $product->product_price = $request->product_price;
+        $product->product_category = $request->product_category;
+
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('products'), $imagename);
+            $product->product_image = $imagename;
+        }
+
+        $product->save();
+
+        return redirect()->back()->with('productupdated_message', 'Product updated successfully');
     }
 
 }
