@@ -30,7 +30,7 @@
                     <td style=" padding: 12px;">
                         <a href="{{ route('categorytoupdate', $product->id) }}" style="color: green;">
                             Update
-                        </a>&nbsp;&nbsp;&nbsp;<a href="{{ route('admin.categorydelete', $product->id) }}"
+                        </a>&nbsp;&nbsp;&nbsp;<a href="{{ route('admin.productdelete', $product->id) }}"
                             onclick="return confirm('Are you sure to delete')">Delete</a>
                     </td>
                 </tr>

@@ -13,15 +13,13 @@ Route::get('/', function () {
 //     return view('admin.test_admin');
 // });
 
-Route::get('/dashboard', [UserController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 
 Route::middleware('admin')->group(function () {
     Route::get('/add_category', [AdminController::class, 'addCategory'])->name('admin.addcategory');
@@ -34,10 +32,10 @@ Route::middleware('admin')->group(function () {
 
     Route::get('/update_category/{id}', [AdminController::class, 'updateCategory'])->name('categorytoupdate');
 
-    
-    
     Route::post('/update_category/{id}', [AdminController::class, 'postUpdateCategory'])->name('admin.postupdatecategory');
-    
+
+    Route::get('/delete_product/{id}', [AdminController::class, 'deleteProduct'])->name('admin.productdelete');
+
     Route::get('/add_product', [AdminController::class, 'addProduct'])->name('admin.addproduct');
 
     Route::get('/view_product', [AdminController::class, 'viewProduct'])->name('admin.viewproduct');
