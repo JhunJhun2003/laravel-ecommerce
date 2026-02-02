@@ -13,7 +13,8 @@
                 <textarea name="product_description" id="" placeholder="Product description...">{{ $product->product_description }}</textarea><br><br>
                 <input type="text" name="product_quantity" placeholder="Enter Product Quantity" value="{{ $product->product_quantity }}"><br><br>
                 <input type="number" name="product_price" placeholder="Enter Product Price" value="{{ $product->product_price }}"><br><br>
-                <input type="file" name="product_image"><label>Add Image here</label><br><br>
+                <img src="{{ asset('products/' . $product->product_image) }}" alt="Product Image" style="width: 50px; height: 50px;"><label>Current Image</label><br><br>
+                <input type="file" name="product_image"><br><label>Add new Image here</label><br><br>
                 <select name="product_category">
                     @foreach ($categories as $category)
                     <option value="{{ $category->category }}">{{ $category->category }}</option>

@@ -5,9 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', [UserController::class, 'home'])->name('index');
 
 // Route::get('/test_admin', function () {
 //     return view('admin.test_admin');
@@ -22,6 +20,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('admin')->group(function () {
+
+//for the categories
     Route::get('/add_category', [AdminController::class, 'addCategory'])->name('admin.addcategory');
 
     Route::post('/add_category', [AdminController::class, 'postAddCategory'])->name('admin.postaddcategory');
@@ -35,7 +35,7 @@ Route::middleware('admin')->group(function () {
     Route::post('/update_category/{id}', [AdminController::class, 'postUpdateCategory'])->name('admin.postupdatecategory');
 
 
-
+//for the products
     Route::get('/delete_product/{id}', [AdminController::class, 'deleteProduct'])->name('admin.productdelete');
 
     Route::post('/updated_product/{id}', [AdminController::class, 'updateProduct'])->name('admin.producttoupdate');   

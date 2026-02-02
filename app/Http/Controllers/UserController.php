@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class UserController extends Controller
 {
@@ -15,5 +16,10 @@ class UserController extends Controller
             return view('admin.dashboard');
         }
 
+    }
+    public function home()
+    {
+        $products = Product::all();
+        return view('index', compact('products'));
     }
 }

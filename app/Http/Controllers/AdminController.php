@@ -56,12 +56,7 @@ class AdminController extends Controller
         return view('admin.addproduct', compact('categories'));
     }
 
-    public function editProduct($id)
-    {
-        $product = Product::findOrFail($id);
-        $categories = Category::all();
-        return view('admin.editproduct', compact('product', 'categories'));
-    }
+   
 
     public function postAddProduct(Request $request)
     {
@@ -95,6 +90,12 @@ class AdminController extends Controller
         return redirect()->back()->with('deleteproduct_message', 'Product deleted successfully');
     }
 
+     public function editProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.editproduct', compact('product', 'categories'));
+    }
     public function updateProduct(Request $request, $id){
         $product = Product::findOrFail($id);
         $product->product_title = $request->product_title;
