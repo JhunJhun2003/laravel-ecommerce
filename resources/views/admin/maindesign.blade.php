@@ -23,17 +23,7 @@
 <body>
     <header class="header">
         <nav class="navbar navbar-expand-lg">
-            <div class="search-panel">
-                <div class="search-inner d-flex align-items-center justify-content-center">
-                    <div class="close-btn">Close <i class="fa fa-close"></i></div>
-                    <form id="searchForm" action="#">
-                        <div class="form-group">
-                            <input type="search" name="search" placeholder="What are you searching for...">
-                            <button type="submit" class="submit">Search</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
             <div class="container-fluid d-flex align-items-center justify-content-between">
                 <div class="navbar-header">
                     <!-- Navbar Header--><a href="index.html" class="navbar-brand">
@@ -52,15 +42,19 @@
                                 class="badge dashbg-1">5</span></a>
 
                     </div>
+
                     <!-- Log out               -->
-                    <div class="list-inline-item logout"> <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                    
-                        <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
+                    <div class="list-inline-item logout">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-responsive-nav-link :href="route('logout')"
+                                onclick="event.preventDefault();
                                                             this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
-                    </form></div>
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -87,7 +81,8 @@
                         <li><a href="{{ route('admin.viewcategory') }}">View Category</a></li>
                     </ul>
                 </li>
-                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
+                            class="icon-windows"></i>Example
                         dropdown </a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         <li><a href="{{ route('admin.addproduct') }}">Add Product</a></li>
@@ -104,13 +99,14 @@
                     <h2 class="h5 no-margin-bottom">Admin Dashboard</h2>
                 </div>
             </div>
+            
             <section class="no-padding-top no-padding-bottom">
-               @yield('dashboard')
-               @yield('add_category')
-               @yield('view_category')
-               @yield('update_category')
-               @yield('add_product')
-               @yield('view_product')
+                @yield('dashboard')
+                @yield('add_category')
+                @yield('view_category')
+                @yield('update_category')
+                @yield('add_product')
+                @yield('view_product')
             </section>
 
             <footer class="footer">

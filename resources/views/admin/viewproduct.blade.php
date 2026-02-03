@@ -5,6 +5,14 @@
             {{ session('deleteproduct_message') }}
         </div>
     @endif
+    <div>
+        <form id="searchForm" action="#">
+            <div class="form-group">
+                <input type="search" name="search" placeholder="What are you searching for...">
+                <button type="submit" class="submit">Search</button>
+            </div>
+        </form>
+    </div>
     <table style="width:100%; border-collapse: collapse; font-family: Arial,sans-serif; ">
         <thead>
             <tr style="background-color:#f2f2f2;">
@@ -26,7 +34,8 @@
                     <td style=" padding: 12px;">{{ $product->product_description }}</td>
                     <td style=" padding: 12px;">{{ $product->product_quantity }}</td>
                     <td style=" padding: 12px;">{{ $product->product_price }}</td>
-                    <td style=" padding: 12px;"><img src="{{ asset('products/' . $product->product_image) }}" alt="Product Image" style="width: 50px; height: 50px;"></td>
+                    <td style=" padding: 12px;"><img src="{{ asset('products/' . $product->product_image) }}"
+                            alt="Product Image" style="width: 50px; height: 50px;"></td>
                     <td style=" padding: 12px;">
                         <a href="{{ route('producttoupdate', $product->id) }}" style="color: green;">
                             Update
