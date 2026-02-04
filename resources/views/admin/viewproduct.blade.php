@@ -6,8 +6,9 @@
         </div>
     @endif
     <div>
-        <form id="searchForm" action="#">
+        <form id="searchForm" action="{{ route('admin.searchproduct') }}" method="POST">
             <div class="form-group">
+                  @csrf
                 <input type="search" name="search" placeholder="What are you searching for...">
                 <button type="submit" class="submit">Search</button>
             </div>
@@ -16,13 +17,13 @@
     <table style="width:100%; border-collapse: collapse; font-family: Arial,sans-serif; ">
         <thead>
             <tr style="background-color:#f2f2f2;">
-                <th style=" padding: 12px; text-align: left; border-botton:1px solid #ddd; ">Product ID</th>
-                <th style=" padding: 12px; text-align: left; border-botton:1px solid #ddd; ">Product Title</th>
-                <th style=" padding: 12px; text-align: left; border-botton:1px solid #ddd; ">Product Description</th>
-                <th style=" padding: 12px; text-align: left; border-botton:1px solid #ddd; ">Product Quantity</th>
-                <th style=" padding: 12px; text-align: left; border-botton:1px solid #ddd; ">Product Price</th>
-                <th style=" padding: 12px; text-align: left; border-botton:1px solid #ddd; ">Product Image</th>
-                <th style=" padding: 12px; text-align: left; border-botton:1px solid #ddd; ">Action</th>
+                <th style=" padding: 12px; text-align: left; border-bottom:1px solid #ddd; ">Product ID</th>
+                <th style=" padding: 12px; text-align: left; border-bottom:1px solid #ddd; ">Product Title</th>
+                <th style=" padding: 12px; text-align: left; border-bottom:1px solid #ddd; ">Product Description</th>
+                <th style=" padding: 12px; text-align: left; border-bottom:1px solid #ddd; ">Product Quantity</th>
+                <th style=" padding: 12px; text-align: left; border-bottom:1px solid #ddd; ">Product Price</th>
+                <th style=" padding: 12px; text-align: left; border-bottom:1px solid #ddd; ">Product Image</th>
+                <th style=" padding: 12px; text-align: left; border-bottom:1px solid #ddd; ">Action</th>
             </tr>
         </thead>
 

@@ -6,8 +6,6 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-use function Pest\Laravel\delete;
-
 class AdminController extends Controller
 {
     public function addCategory()
@@ -17,15 +15,17 @@ class AdminController extends Controller
 
     public function postAddCategory(Request $request)
     {
-        $category = new Category();
+        $category = new Category;
         $category->category = $request->category;
         $category->save();
+
         return redirect()->back()->with('category_message', 'category added successful');
     }
 
     public function viewCategory()
     {
         $categories = Category::all();
+
         return view('admin.viewcategory', compact('categories'));
     }
 
@@ -33,12 +33,14 @@ class AdminController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
+
         return redirect()->back()->with('deletecategory_message', 'deleted successful');
     }
 
     public function updateCategory($id)
     {
         $category = Category::findOrFail($id);
+
         return view('admin.updatecategory', compact('category'));
     }
 
@@ -47,20 +49,20 @@ class AdminController extends Controller
         $category = Category::findOrFail($id);
         $category->category = $request->updatedcategory;
         $category->save();
+
         return redirect()->back()->with('categoryupdated_message', 'category updated successfully');
     }
 
     public function addProduct()
     {
         $categories = Category::all();
+
         return view('admin.addproduct', compact('categories'));
     }
 
-   
-
     public function postAddProduct(Request $request)
     {
-        $product = new Product();
+        $product = new Product;
         $product->product_title = $request->product_title;
         $product->product_description = $request->product_description;
         $product->product_quantity = $request->product_quantity;
@@ -69,7 +71,7 @@ class AdminController extends Controller
 
         if ($request->hasFile('product_image')) {
             $image = $request->file('product_image');
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $imagename = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('products'), $imagename);
             $product->product_image = $imagename;
         }
@@ -79,24 +81,31 @@ class AdminController extends Controller
         return redirect()->back()->with('product_message', 'Product added successfully');
     }
 
-    public function viewProduct(){
+    public function viewProduct()
+    {
         $products = Product::paginate(3);
+
         return view('admin.viewproduct', compact('products'));
     }
 
-    public function deleteProduct($id){
+    public function deleteProduct($id)
+    {
         $product = Product::findOrFail($id);
         $product->delete();
+
         return redirect()->back()->with('deleteproduct_message', 'Product deleted successfully');
     }
 
-     public function editProduct($id)
+    public function editProduct($id)
     {
         $product = Product::findOrFail($id);
         $categories = Category::all();
+
         return view('admin.editproduct', compact('product', 'categories'));
     }
-    public function updateProduct(Request $request, $id){
+
+    public function updateProduct(Request $request, $id)
+    {
         $product = Product::findOrFail($id);
         $product->product_title = $request->product_title;
         $product->product_description = $request->product_description;
@@ -106,7 +115,7 @@ class AdminController extends Controller
 
         if ($request->hasFile('product_image')) {
             $image = $request->file('product_image');
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $imagename = time().'.'.$image->getClientOriginalExtension();
             $image->move(public_path('products'), $imagename);
             $product->product_image = $imagename;
         }
@@ -116,4 +125,13 @@ class AdminController extends Controller
         return redirect()->back()->with('productupdated_message', 'Product updated successfully');
     }
 
+    public function searchProduct(Request $request)
+    {
+        $products = Product::where('product_title', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('product_description', 'LIKE', '%'.$request->search.'%')
+            ->orWhere('product_category', 'LIKE', '%'.$request->search.'%')
+            ->paginate(3);
+
+        return view('admin.viewproduct', compact('products'));
+    }
 }

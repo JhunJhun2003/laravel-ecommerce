@@ -47,6 +47,9 @@ Route::middleware('admin')->group(function () {
     Route::get('/view_product', [AdminController::class, 'viewProduct'])->name('admin.viewproduct');
 
     Route::post('/add_product', [AdminController::class, 'postAddProduct'])->name('admin.postaddproduct');
+
+    //for search product
+    Route::any('/search_product', [AdminController::class, 'searchProduct'])->name('admin.searchproduct');
 });
 
 require __DIR__.'/auth.php';
